@@ -2740,37 +2740,40 @@ ALSoundRecorderProtocol, ALCustomPickerDelegate,ALImageSendDelegate,UIDocumentPi
         }]];
     }
 
-    if (((!self.channelKey && !self.conversationId)) && ![ALApplozicSettings isBlockUserOptionHidden]) {
-        [theController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"blockUserOption", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"Block User", @"")  style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-
-            if (![ALDataNetworkConnection checkDataNetworkAvailable]) {
-                [self showNoDataNotification];
-                return;
-            }
-
-            ALUserService *userService = [ALUserService new];
-            [userService blockUser:self.contactIds withCompletionHandler:^(NSError *error, BOOL userBlock) {
-
-                if (userBlock) {
-
-                    self.isUserBlocked = YES;
-                    [self.label setHidden:self.isUserBlocked];
-
-                    NSString *blockInfo = NSLocalizedStringWithDefaultValue(@"blockedSuccessfullyText", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"%@ is blocked successfully", @"");
-
-                    NSString *alertText = [NSString stringWithFormat:blockInfo,[self.alContact getDisplayName]];
-
-                    [ALUIUtilityClass showAlertMessage:alertText andTitle:NSLocalizedStringWithDefaultValue(@"userBlock", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"USER BLOCK", @"")  ];
-                }
-            }];
-        }]];
-    }
-    if (![ALApplozicSettings isShareContactOptionHidden]) {
-        [theController addAction:[UIAlertAction actionWithTitle: NSLocalizedStringWithDefaultValue(@"shareContact", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"Share Contact", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-
-            [self openContactsView];
-        }]];
-    }
+//    if(((!self.channelKey && !self.conversationId) || (self.alChannel.type == GROUP_OF_TWO)) && ![ALApplozicSettings isBlockUserOptionHidden])
+//    {
+//        [theController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"blockUserOption", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"BLOCK USER", @"")  style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//
+//            if(![ALDataNetworkConnection checkDataNetworkAvailable])
+//            {
+//                [self showNoDataNotification];
+//                return;
+//            }
+//
+//            ALUserService *userService = [ALUserService new];
+//            [userService blockUser:self.contactIds withCompletionHandler:^(NSError *error, BOOL userBlock) {
+//
+//                if(userBlock)
+//                {
+//
+//                    self.isUserBlocked = YES;
+//                    [self.label setHidden:self.isUserBlocked];
+//
+//                    NSString *blockInfo = NSLocalizedStringWithDefaultValue(@"blockedSuccessfullyText", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"%@ is blocked successfully", @"");
+//
+//                    NSString * alertText = [NSString stringWithFormat:blockInfo,[self.alContact getDisplayName]];
+//
+//                    [ALUtilityClass showAlertMessage:alertText andTitle:NSLocalizedStringWithDefaultValue(@"userBlock", nil, [NSBundle mainBundle], @"USER BLOCK", @"")  ];
+//                }
+//            }];
+//        }]];
+//    }
+//    if(![ALApplozicSettings isShareContactOptionHidden]){
+//        [theController addAction:[UIAlertAction actionWithTitle: NSLocalizedStringWithDefaultValue(@"shareContact", nil, [NSBundle mainBundle], @"Share Contact", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//
+//            [self openContactsView];
+//        }]];
+//    }
 
 
 
