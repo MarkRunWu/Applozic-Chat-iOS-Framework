@@ -2816,40 +2816,37 @@ NSString * const ThirdPartyDetailVCNotificationChannelKey = @"ThirdPartyDetailVC
         }]];
     }
 
-    if(((!self.channelKey && !self.conversationId) || (self.alChannel.type == GROUP_OF_TWO)) && ![ALApplozicSettings isBlockUserOptionHidden])
-    {
-        [theController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"blockUserOption", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"BLOCK USER", @"")  style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 
-            if(![ALDataNetworkConnection checkDataNetworkAvailable])
-            {
-                [self showNoDataNotification];
-                return;
-            }
-
-            ALUserService *userService = [ALUserService new];
-            [userService blockUser:self.contactIds withCompletionHandler:^(NSError *error, BOOL userBlock) {
-
-                if(userBlock)
-                {
-
-                    self.isUserBlocked = YES;
-                    [self.label setHidden:self.isUserBlocked];
-
-                    NSString *blockInfo = NSLocalizedStringWithDefaultValue(@"blockedSuccessfullyText", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"%@ is blocked successfully", @"");
-
-                    NSString * alertText = [NSString stringWithFormat:blockInfo,[self.alContact getDisplayName]];
-
-                    [ALUtilityClass showAlertMessage:alertText andTitle:NSLocalizedStringWithDefaultValue(@"userBlock", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"USER BLOCK", @"")  ];
-                }
-            }];
-        }]];
-    }
-    if(![ALApplozicSettings isShareContactOptionHidden]){
-        [theController addAction:[UIAlertAction actionWithTitle: NSLocalizedStringWithDefaultValue(@"shareContact", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"Share Contact", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-
-            [self openContactsView];
-        }]];
-    }
+//    if((!self.channelKey && !self.conversationId) || (self.alChannel.type == GROUP_OF_TWO))
+//    {
+//        [theController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"blockUserOption", nil, [NSBundle mainBundle], @"BLOCK USER", @"")  style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//            
+//            if(![ALDataNetworkConnection checkDataNetworkAvailable])
+//            {
+//                [self showNoDataNotification];
+//                return;
+//            }
+//            
+//            ALUserService *userService = [ALUserService new];
+//            [userService blockUser:self.contactIds withCompletionHandler:^(NSError *error, BOOL userBlock) {
+//                
+//                if(userBlock)
+//                {
+//                    self.isUserBlocked = YES;
+//                    [self.label setHidden:self.isUserBlocked];
+//                    [self.typingLabel setHidden:self.isUserBlocked];
+//                    NSString * alertText = [NSString stringWithFormat:[@"%@ " stringByAppendingString:NSLocalizedStringWithDefaultValue(@"blockedSuccessfullyText", nil, [NSBundle mainBundle], @"is blocked successfully", @"")], [self.alContact getDisplayName]];
+//                    [ALUtilityClass showAlertMessage:alertText andTitle:NSLocalizedStringWithDefaultValue(@"userBlock", nil, [NSBundle mainBundle], @"USER BLOCK", @"")  ];
+//                }
+//            }];
+//        }]];
+//    }
+//    if(![ALApplozicSettings isShareContactOptionHidden]){
+//        [theController addAction:[UIAlertAction actionWithTitle: NSLocalizedStringWithDefaultValue(@"shareContact", nil, [NSBundle mainBundle], @"Share Contact", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//
+//            [self openContactsView];
+//        }]];
+//    }
 
     if(![ALApplozicSettings isPhotoGalleryOptionHidden]){
         [theController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"photosOrVideoOption", [ALApplozicSettings getLocalizableName], [NSBundle mainBundle], @"Photos/Videos" , @"")  style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
