@@ -2286,6 +2286,10 @@ ALSoundRecorderProtocol, ALCustomPickerDelegate,ALImageSendDelegate,UIDocumentPi
         self.refresh = YES;
     }
 
+    self.refresh = YES;
+
+    [self setCustomRepeatBackgroundWallpaper];
+    [self setBackGroundWallpaper];
 }
 
 //==============================================================================================================================================
@@ -2305,6 +2309,14 @@ ALSoundRecorderProtocol, ALCustomPickerDelegate,ALImageSendDelegate,UIDocumentPi
 
     [self.mTableView setBackgroundColor:[ALApplozicSettings getChatViewControllerBackgroundColor]];
     [self.mTableView.superview setBackgroundColor:[ALApplozicSettings getMessagesViewBackgroundColour]];
+}
+
+- (void)setCustomRepeatBackgroundWallpaper
+{
+    [self.mTableView setBackgroundColor:[UIColor clearColor]];
+    UIView *bgView = [[UIView alloc] init];
+    bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern_bg"]];
+    self.mTableView.backgroundView = bgView;
 }
 
 //==============================================================================================================================================
