@@ -138,6 +138,11 @@
         [self createAndLaunchChatView ];
     }
     
+    // Custom right item style
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                   target:self
+                                                                                   action:@selector(navigationRightButtonAction:)];
+    [self.navigationItem setRightBarButtonItem: barButtonItem];
 }
 
 -(void)loadMessages:(NSNotification *)notification
