@@ -106,6 +106,12 @@ static CGFloat const DEFAULT_TOP_PORTRAIT_CONSTANT = 64;
     }
     [_mTableView setBackgroundColor:[ALApplozicSettings getMessagesViewBackgroundColour]];
     self.colourDictionary = [ALApplozicSettings getUserIconFirstNameColorCodes];
+    
+    // Custom right item style
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                   target:self
+                                                                                   action:@selector(navigationRightButtonAction:)];
+    [self.navigationItem setRightBarButtonItem: barButtonItem];
 }
 
 - (void)setupNavigationButtons {
